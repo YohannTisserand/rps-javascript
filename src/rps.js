@@ -1,6 +1,9 @@
 "use strict";
 
-const buttons = document.querySelectorAll(".button");
+const buttons = document.querySelectorAll("button");
+let playerScore = 0;
+let computerScore = 0;
+
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -19,11 +22,13 @@ function playRound(playerSelection) {
   let result = "";
 
   if (playerSelection === computerSelection) {
-    result += `It's a tie. Computer choose ${computerSelection}`;
+    result += `It's a tie. Computer choose ${computerSelection}.<br> your score is: ${playerScore}<br> Computer score is: ${computerScore}`;
   } else if (playerSelection === winmap[computerSelection]) {
-    result += `Computer win with ${computerSelection}`;
+    computerScore += 1;
+    result += `Computer win with ${computerSelection}.<br> your score is: ${playerScore}<br> Computer score is: ${computerScore}`;
   } else if (winmap[playerSelection] === computerSelection) {
-    result += `You win! Computer choose ${computerSelection}`;
+    playerScore += 1;
+    result += `You win! Computer choose ${computerSelection}.<br> your score is: ${playerScore}<br> Computer score is: ${computerScore}`;
   }
   document.getElementById("result").innerHTML = result;
 }
